@@ -27,49 +27,49 @@ def plot_dendrogram(model, **kwargs):
     # Plot the corresponding dendrogram
     dendrogram(linkage_matrix, **kwargs)
 
-# iris = load_iris()
-# X = iris.data
+iris = load_iris()
+X = iris.data
 
-# # setting distance_threshold=0 ensures we compute the full tree.
-# model = AgglomerativeClustering(distance_threshold=0, n_clusters=None, linkage="single")
+# setting distance_threshold=0 ensures we compute the full tree.
+model = AgglomerativeClustering(distance_threshold=0, n_clusters=None, linkage="single")
 
-# model = model.fit(X)
-# plt.title('Hierarchical Clustering Dendrogram')
-# # plot the top three levels of the dendrogram
-# plot_dendrogram(model, truncate_mode='level', p=2)
-# plt.xlabel("Number of points in node (or index of point if no parenthesis).")
-# plt.ylabel('Distance')
-# plt.show()
+model = model.fit(X)
+plt.title('Hierarchical Clustering Dendrogram')
+# plot the top three levels of the dendrogram
+plot_dendrogram(model, truncate_mode='level', p=4)
+plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+plt.ylabel('Distance')
+plt.show()
 
-from sklearn import cluster
+# from sklearn import cluster
 
-np.set_printoptions(suppress=True)
-k = 2
-color_map = "winter"
-karate_adjacency_matrix = np.loadtxt("./data/KarateMatrix.txt")
+# np.set_printoptions(suppress=True)
+# k = 2
+# color_map = "winter"
+# karate_adjacency_matrix = np.loadtxt("./data/KarateMatrix.txt")
 
-edges = karate_adjacency_matrix.sum(axis=0) # edge centralities
-edge_centrality_matrix = np.identity(karate_adjacency_matrix.shape[0]) * edges
-laplacian_matrix = edge_centrality_matrix - karate_adjacency_matrix
+# edges = karate_adjacency_matrix.sum(axis=0) # edge centralities
+# edge_centrality_matrix = np.identity(karate_adjacency_matrix.shape[0]) * edges
+# laplacian_matrix = edge_centrality_matrix - karate_adjacency_matrix
 
-eig_values, eig_vectors = np.linalg.eig(laplacian_matrix)
+# eig_values, eig_vectors = np.linalg.eig(laplacian_matrix)
 
-eig_vectors = eig_vectors[:, np.argsort(eig_values)]
-eig_values = eig_values[np.argsort(eig_values)]
-eig_values[np.argsort(eig_values)]
+# eig_vectors = eig_vectors[:, np.argsort(eig_values)]
+# eig_values = eig_values[np.argsort(eig_values)]
+# eig_values[np.argsort(eig_values)]
 
-XX = eig_vectors[:,1:3]
+# XX = eig_vectors[:,1:3]
 
-std = np.std(edges)
-mean = np.mean(edges)
-res  = (edges - mean) / std
+# std = np.std(edges)
+# mean = np.mean(edges)
+# res  = (edges - mean) / std
 
-print(eig_values[0:5])
-eig_vectors[eig_vectors[:,1] > 0]
+# print(eig_values[0:5])
+# eig_vectors[eig_vectors[:,1] > 0]
 
-kmeanz = cluster.KMeans(n_clusters=2, random_state=1234, init='random', verbose=1)
-X = kmeanz.fit_transform(karate_adjacency_matrix)
-X
+# kmeanz = cluster.KMeans(n_clusters=2, random_state=1234, init='random', verbose=1)
+# X = kmeanz.fit_transform(karate_adjacency_matrix)
+# X
 
 ## subtract X - X.mean
 ## normalize X by ^2 then summing axis 1 

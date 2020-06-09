@@ -16,7 +16,7 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceRoot}/cluster.py",
-            "console": "integratedTerminal"
+            "console": "internalConsole" // gets annoying when you have to close out terminals
         }
     ]
 }
